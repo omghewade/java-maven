@@ -17,13 +17,14 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         Uimanager uiManager = new Uimanager();
         BookAdmin bookAdmin = new BookAdmin();
-        Bookrecord bookRecord = new Bookrecord(1, "Sample Book", "Author Name", "Publisher Name", "English", "Description of the book");
+        Bookrecord bookRecord = new Bookrecord(1, "Sample Book", "Author Name", "Publisher Name", "English",
+                "Description of the book");
         System.out.println("Select Role:");
         System.out.println("1) Admin");
         System.out.println("2) User");
         System.out.print("Enter your choice: ");
         int roleChoice = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
@@ -46,6 +47,7 @@ public class App {
 
     // Admin menu
     public static void adminMenu(Scanner scanner) {
+        BookAdmin bookAdmin = new BookAdmin();
         while (true) {
             System.out.println("\n=== Admin Menu ===");
             System.out.println("1) Add Record");
@@ -56,21 +58,66 @@ public class App {
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline
-            
+
             switch (choice) {
                 case 1:
-                  
-
+                    System.out.println("Enter book details:");
+                    System.out.print("ID: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline
+                    System.out.print("Title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Author: ");
+                    String author = scanner.nextLine();
+                    System.out.print("Publisher: ");
+                    String publisher = scanner.nextLine();
+                    System.out.print("Language: ");
+                    String language = scanner.nextLine();
+                    System.out.print("Description: ");
+                    String description = scanner.nextLine();
+                    bookAdmin.addrecord(new Bookrecord(id, title, author, publisher, language, description));
+                    System.out.println("Record added successfully!");
 
                     System.out.println("Adding record...");
                     break;
                 case 2:
+                    System.out.print("Enter the ID of the record to delete: ");
+                    int deleteId = scanner.nextInt();
+
+                    bookAdmin.deleterecord(deleteId);
+
                     System.out.println("Deleting record...");
                     break;
                 case 3:
+                    System.out.print("Enter the ID of the record to update: ");
+                    int updateId = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline
+                    System.out.print("Enter new title: ");
+                    String newTitle = scanner.nextLine();
+                    System.out.print("Enter new author: ");
+                    String newAuthor = scanner.nextLine();
+                    System.out.print("Enter new publisher: ");
+                    String newPublisher = scanner.nextLine();
+                    System.out.print("Enter new language: ");
+                    String newLanguage = scanner.nextLine();
+                    System.out.print("Enter new description: ");
+                    String newDescription = scanner.nextLine();
+
+                    bookAdmin.updaterecord(updateId,
+                            new Bookrecord(updateId, newTitle, newAuthor, newPublisher, newLanguage, newDescription));
                     System.out.println("Updating record...");
+
                     break;
                 case 4:
+                    System.out.print("Enter the ID to search: ");
+                    int searchId = scanner.nextInt();
+                    Bookrecord foundRecord = bookAdmin.searchbyid(searchId);
+                    if (foundRecord != null) {
+                        System.out.println("Book found: " + foundRecord);
+                    } else {
+                        System.out.println("Book with ID " + searchId + " not found.");
+                    }
+
                     System.out.println("Searching by ID...");
                     break;
                 case 5:
@@ -92,12 +139,12 @@ public class App {
             System.out.println("4) Exit");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline
-            
+
             switch (choice) {
                 case 1:
                     System.out.println("Reading book...");
                     break;
-                   
+
                 case 2:
                     System.out.println("Writing book...");
                     break;

@@ -1,51 +1,52 @@
 package com.tap.BookManagement.Repository;
+
 import com.tap.BookManagement.Entity.Bookrecord;
 import java.util.ArrayList;
+
 public class BookAdmin {
 
     ArrayList<Bookrecord> bookRecords = new ArrayList<Bookrecord>();
 
     public void addrecord(Bookrecord book)
-    
+
     {
         bookRecords.add(book);
     }
 
-public void Updaterecord(int id){
-    for (Bookrecord book : bookRecords){
+    public void Updaterecord(int id) {
+        for (Bookrecord book : bookRecords) {
 
-     if (book.getId() == id){
-          
-        System.out.println("enter the new book title\n");
-        String newtitle = System.console().readLine();
-        book.setTitle(newtitle);
+            if (book.getId() == id) {
 
-        System.err.println("enter the book Author");
-        String newauthor = System.console().readLine();
-        book.setAuthor(newauthor);
+                System.out.println("enter the new book title\n");
+                String newtitle = System.console().readLine();
+                book.setTitle(newtitle);
 
-        System.out.println("enter the book publisher");
-        String newpublisher = System.console().readLine();
-        book.setPublisher(newpublisher);
-        
-        System.out.println("enter the book language");
-        String newlanguage = System.console().readLine();   
-        book.setLanguage(newlanguage);
+                System.err.println("enter the book Author");
+                String newauthor = System.console().readLine();
+                book.setAuthor(newauthor);
 
-        System.out.println("enter the book description");
-        String newdescription = System.console().readLine();
-        book.setDescription(newdescription);
-        System.out.println("Book record updated successfully!");
-        return;
-        } else {
-            System.out.println("Book with ID " + id + " not found.");
-            return;
+                System.out.println("enter the book publisher");
+                String newpublisher = System.console().readLine();
+                book.setPublisher(newpublisher);
+
+                System.out.println("enter the book language");
+                String newlanguage = System.console().readLine();
+                book.setLanguage(newlanguage);
+
+                System.out.println("enter the book description");
+                String newdescription = System.console().readLine();
+                book.setDescription(newdescription);
+                System.out.println("Book record updated successfully!");
+                return;
+            } else {
+                System.out.println("Book with ID " + id + " not found.");
+                return;
+
+            }
 
         }
-
-     }
-   }
-
+    }
 
     public void deleterecord(int id) {
         for (Bookrecord book : bookRecords) {
@@ -56,18 +57,18 @@ public void Updaterecord(int id){
             }
         }
         System.out.println("Book with ID " + id + " not found.");
-                
 
     }
 
-    public void searchbyid(int id) {
+    public Bookrecord searchbyid(int id) {
         for (Bookrecord book : bookRecords) {
             if (book.getId() == id) {
                 System.out.println("Book found: " + book);
-                return;
+                return book;
             }
         }
         System.out.println("Book with ID " + id + " not found.");
+        return null;
     }
 
     public void displayAllRecords() {
@@ -79,12 +80,18 @@ public void Updaterecord(int id){
             }
         }
     }
+
     public ArrayList<Bookrecord> getBookRecords() {
         return bookRecords;
     }
 
     public void setBookRecords(ArrayList<Bookrecord> bookRecords) {
         this.bookRecords = bookRecords;
+    }
+
+    public void updaterecord(int updateId, Bookrecord bookrecord) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updaterecord'");
     }
 
 }

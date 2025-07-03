@@ -1,0 +1,4 @@
+com\tap\BookManagement\Ui\Uimanager.class
+com\tap\BookManagement\Main\App.class
+com\tap\BookManagement\Repository\BookAdmin.class
+com\tap\BookManagement\Entity\Bookrecord.class
